@@ -7,6 +7,7 @@ class App extends React.Component {
         super();
         this.state = {
             red: 0,
+            blue: 0,
         }
         this.update = this.update.bind(this)
     }
@@ -14,6 +15,7 @@ class App extends React.Component {
     update(e) {
         this.setState({
             red: ReactDom.findDOMNode(this.refs.red.refs.inp).value,
+            blue: ReactDom.findDOMNode(this.refs.blue.refs.inp).value,
         })
     }
 
@@ -28,12 +30,21 @@ class App extends React.Component {
                     val={+this.state.red}
                     label="Red"
                     update={this.update}/>
+                <NumInput
+                    ref="blue"
+                    min={0}
+                    max={255}
+                    step={0}
+                    val={+this.state.blue}
+                    label="Blue"
+                    type="number"
+                    update={this.update}/>
             </div>
         )
     }
 }
 
-class NumInput extends React.Component {
+export class NumInput extends React.Component {
     render() {
         let label = this.props.label !== '' ?
             <label>{this.props.label} - {this.props.val}</label> : ''
